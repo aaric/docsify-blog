@@ -1,5 +1,7 @@
 # docsify建站指南
 
+## 部署
+
 ```bash
 # 安装
 npm install docsify-cli -g --registry=https://registry.npm.taobao.org
