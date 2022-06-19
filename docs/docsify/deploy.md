@@ -44,5 +44,6 @@ services:
     ports:
       - 3000:3000
 EOF
+
 docker-compose up -d
 ```
