@@ -25,6 +25,7 @@ ENTRYPOINT ["docsify", "serve", "docs"]
 EOF
 
 docker build -t ik8share/docsify:4.4.4-alpine .
+docker tag ik8share/docsify:4.4.4-alpine ik8share/docsify:latest
 ```
 
 ## 单机编排工具
@@ -34,7 +35,7 @@ cat > docker-compose.yaml <<-'EOF'
 version: "3"
 services:
   hexo:
-    image: ik8share/docsify:4.4.4-alpine
+    image: ik8share/docsify:latest
     container_name: docsify_community_edition
     volumes:
      - ./docs:/app/docs
