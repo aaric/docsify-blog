@@ -2,12 +2,16 @@
 
 > You Know, for Blog!
 
-## 初始化
+## 安装
 
 ```bash
 # 安装
 npm install -g docsify-cli --registry=https://registry.npm.taobao.org
+```
 
+## 初始化
+
+```bash
 # 初始化项目
 docsify init ./docs
 ```
