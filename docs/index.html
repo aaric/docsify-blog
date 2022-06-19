@@ -19,7 +19,7 @@
       repo: 'https://github.com/aaric/docsify-blog',
       // loadNavbar: true,
       loadSidebar: true,
-      // subMaxLevel: 2,
+      subMaxLevel: 2,
       count: {
         countable: true,
         fontsize: '0.9em',
@@ -32,6 +32,12 @@
         placeholder: '搜索',
         noData: '找不到结果',
         depth: 3
+      },
+      pagination: {
+        previousText: '上一章节',
+        nextText: '下一章节',
+        crossChapter: true,
+        crossChapterText: true,
       }
     }
   </script>
@@ -53,5 +59,7 @@
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
   <!-- 全文搜索 -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <!-- 分页 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
 </body>
 </html>
