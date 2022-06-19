@@ -1,6 +1,4 @@
-# docsify-blog
-
-> You Know, for Blog!
+# docsify建站指南
 
 ## 安装
 
