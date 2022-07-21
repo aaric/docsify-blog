@@ -8,3 +8,4 @@
   * Java
   * Flutter
   * Kubernetes
+  * [Proxmox VE](pve/deploy.md)

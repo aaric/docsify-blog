@@ -1,6 +1,6 @@
 # docsify部署与编排
 
-## 打包镜像
+## 1 打包镜像
 
 ```bash
 cat > Dockerfile <<-'EOF'
@@ -28,7 +28,7 @@ docker build -t ik8share/docsify:4.4.4-alpine .
 docker tag ik8share/docsify:4.4.4-alpine ik8share/docsify:latest
 ```
 
-## 单机编排工具
+## 2 单机编排工具
 
 ```bash
 cat > docker-compose.yaml <<-'EOF'
