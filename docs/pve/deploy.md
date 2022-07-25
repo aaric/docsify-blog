@@ -77,48 +77,66 @@ vi /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js
 systemctl restart pveproxy
 ```
 
-### 3.3 切换阿里云Debian源
+### 3.3 切换PVE的Debian源
 
 ```bash
-vi /etc/apt/sources.list
-'''
-deb http://ftp.debian.org/debian bullseye main contrib
-
-deb http://ftp.debian.org/debian bullseye-updates main contrib
-
-# security updates
-deb http://security.debian.org bullseye-security main contrib
-'''
-
 mv /etc/apt/sources.list /etc/apt/sources.list.bak220721
 
+# aliyun
 cat > /etc/apt/sources.list <<-'EOF'
 deb http://mirrors.aliyun.com/debian/ bullseye main non-free contrib
-deb-src http://mirrors.aliyun.com/debian/ bullseye main non-free contrib
+#deb-src http://mirrors.aliyun.com/debian/ bullseye main non-free contrib
 deb http://mirrors.aliyun.com/debian-security/ bullseye-security main
-deb-src http://mirrors.aliyun.com/debian-security/ bullseye-security main
+#deb-src http://mirrors.aliyun.com/debian-security/ bullseye-security main
 deb http://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib
-deb-src http://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib
+#deb-src http://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib
 deb http://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib
-deb-src http://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib
+#deb-src http://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib
+EOF
+
+# tsinghua √
+cat > /etc/apt/sources.list <<-'EOF'
+deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye main contrib non-free
+#deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye main contrib non-free
+deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-updates main contrib non-free
+#deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-updates main contrib non-free
+deb https://mirrors.tuna.tsinghua.edu.cn/debian-security bullseye-security main contrib non-free
+#deb-src https://mirrors.tuna.tsinghua.edu.cn/debian-security bullseye-security main contrib non-free
+deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-backports main contrib non-free
+#deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-backports main contrib non-free
 EOF
 
 apt update
 ```
 
-### 3.4 切换PVE企业版源为CEPH源
+### 3.4 切换PVE的企业源
 
 ```bash
-vi /etc/apt/sources.list.d/pve-enterprise.list
-'''
+cat > /etc/apt/sources.list.d/pve-enterprise.list <<-'EOF'
 #deb https://enterprise.proxmox.com/debian/pve bullseye pve-enterprise
-'''
+EOF
 
+# ustc
 cat > /etc/apt/sources.list.d/pve-ceph.list <<-'EOF'
-deb http://mirrors.ustc.edu.cn/proxmox/debian/ceph-nautilus buster main
+deb https://mirrors.tuna.tsinghua.edu.cn/proxmox/debian bullseye pve-no-subscription
+EOF
+
+# tsinghua √
+cat > /etc/apt/sources.list.d/pve-no-subscription.list <<-'EOF'
+deb https://mirrors.tuna.tsinghua.edu.cn/proxmox/debian bullseye pve-no-subscription
 EOF
 
 apt update
 
 apt install ifupdown2
+```
+
+### 3.5 切换PVE的CT Templates源
+
+```bash
+cp /usr/share/perl5/PVE/APLInfo.pm /usr/share/perl5/PVE/APLInfo.pm.bak220721
+
+sed -i 's|http://download.proxmox.com|https://mirrors.tuna.tsinghua.edu.cn/proxmox|g' /usr/share/perl5/PVE/APLInfo.pm
+
+reboot
 ```
