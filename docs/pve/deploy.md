@@ -85,25 +85,37 @@ mv /etc/apt/sources.list /etc/apt/sources.list.bak220721
 # aliyun
 cat > /etc/apt/sources.list <<-'EOF'
 deb http://mirrors.aliyun.com/debian/ bullseye main non-free contrib
-#deb-src http://mirrors.aliyun.com/debian/ bullseye main non-free contrib
+# deb-src http://mirrors.aliyun.com/debian/ bullseye main non-free contrib
 deb http://mirrors.aliyun.com/debian-security/ bullseye-security main
-#deb-src http://mirrors.aliyun.com/debian-security/ bullseye-security main
+# deb-src http://mirrors.aliyun.com/debian-security/ bullseye-security main
 deb http://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib
-#deb-src http://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib
+# deb-src http://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib
 deb http://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib
-#deb-src http://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib
+# deb-src http://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib
+EOF
+
+# ustc
+cat > /etc/apt/sources.list <<-'EOF'
+deb https://mirrors.ustc.edu.cn/debian/ bullseye main contrib non-free
+# deb-src https://mirrors.ustc.edu.cn/debian/ bullseye main contrib non-free
+deb https://mirrors.ustc.edu.cn/debian/ bullseye-updates main contrib non-free
+# deb-src https://mirrors.ustc.edu.cn/debian/ bullseye-updates main contrib non-free
+deb https://mirrors.ustc.edu.cn/debian/ bullseye-backports main contrib non-free
+# deb-src https://mirrors.ustc.edu.cn/debian/ bullseye-backports main contrib non-free
+deb https://mirrors.ustc.edu.cn/debian-security/ bullseye-security main contrib non-free
+# deb-src https://mirrors.ustc.edu.cn/debian-security/ bullseye-security main contrib non-free
 EOF
 
 # tsinghua √
 cat > /etc/apt/sources.list <<-'EOF'
 deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye main contrib non-free
-#deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye main contrib non-free
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye main contrib non-free
 deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-updates main contrib non-free
-#deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-updates main contrib non-free
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-updates main contrib non-free
 deb https://mirrors.tuna.tsinghua.edu.cn/debian-security bullseye-security main contrib non-free
-#deb-src https://mirrors.tuna.tsinghua.edu.cn/debian-security bullseye-security main contrib non-free
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/debian-security bullseye-security main contrib non-free
 deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-backports main contrib non-free
-#deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-backports main contrib non-free
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-backports main contrib non-free
 EOF
 
 apt update
@@ -117,8 +129,8 @@ cat > /etc/apt/sources.list.d/pve-enterprise.list <<-'EOF'
 EOF
 
 # ustc
-cat > /etc/apt/sources.list.d/pve-ceph.list <<-'EOF'
-deb https://mirrors.tuna.tsinghua.edu.cn/proxmox/debian bullseye pve-no-subscription
+cat > /etc/apt/sources.list.d/pve-no-subscription.list <<-'EOF'
+deb https://mirrors.ustc.edu.cn/proxmox/debian/pve bullseye pve-no-subscription
 EOF
 
 # tsinghua √
@@ -136,6 +148,10 @@ apt install ifupdown2
 ```bash
 cp /usr/share/perl5/PVE/APLInfo.pm /usr/share/perl5/PVE/APLInfo.pm.bak220721
 
+# ustc
+sed -i 's|http://download.proxmox.com|https://mirrors.ustc.edu.cn/proxmox|g' /usr/share/perl5/PVE/APLInfo.pm
+
+# tsinghua √
 sed -i 's|http://download.proxmox.com|https://mirrors.tuna.tsinghua.edu.cn/proxmox|g' /usr/share/perl5/PVE/APLInfo.pm
 
 reboot
