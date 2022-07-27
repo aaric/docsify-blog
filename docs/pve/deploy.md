@@ -187,13 +187,19 @@ iface vmbr0 inet static
         gateway 10.0.11.254
 '''
 
+# dns
+vi /etc/resolv.conf
+'''
+nameserver 10.0.11.16
+'''
+
 # hosts
 vi /etc/hosts
 '''
 10.0.11.70 pve.localhost pve
 '''
 
-# issue
+# issue -- non-essential
 vi /etc/issue
 '''
   https://10.0.11.70:8006/
