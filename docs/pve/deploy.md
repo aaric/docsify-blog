@@ -176,7 +176,33 @@ sed -i 's|http://download.proxmox.com|https://mirrors.tuna.tsinghua.edu.cn/proxm
 reboot
 ```
 
-### 3.6 [OpenVZ Templates download](https://download.openvz.org/template/precreated/)
+### 3.6 修改PVE环境IP地址
+
+```bash
+# ipv4
+vi /etc/network/interfaces
+'''
+iface vmbr0 inet static
+        address 10.0.11.70/24
+        gateway 10.0.11.254
+'''
+
+# hosts
+vi /etc/hosts
+'''
+10.0.11.70 pve.localhost pve
+'''
+
+# issue
+vi /etc/issue
+'''
+  https://10.0.11.70:8006/
+'''
+
+reboot
+```
+
+### 3.7 [OpenVZ Templates download](https://download.openvz.org/template/precreated/)
 
 ```bash
 # upload
