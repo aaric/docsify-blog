@@ -183,26 +183,26 @@ reboot
 vi /etc/network/interfaces
 '''
 iface vmbr0 inet static
-        address 10.0.11.70/24
-        gateway 10.0.11.254
+        address 192.168.1.70/24
+        gateway 192.168.1.1
 '''
 
 # dns
 vi /etc/resolv.conf
 '''
-nameserver 10.0.11.16
+nameserver 192.168.1.1
 '''
 
 # hosts
 vi /etc/hosts
 '''
-10.0.11.70 pve.localhost pve
+192.168.1.70 pve.localhost pve
 '''
 
 # issue -- non-essential
 vi /etc/issue
 '''
-  https://10.0.11.70:8006/
+  https://192.168.1.70:8006/
 '''
 
 reboot
