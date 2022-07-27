@@ -31,6 +31,20 @@
 
 &emsp;&emsp;待完善。。。
 
+```bash
+# upgrade
+apt update
+apt dist-upgrade -y
+
+# kernel
+dpkg --list | grep kernel
+apt purge pve-kernel-5.15.30-2-pve
+reboot
+
+# tzdata
+dpkg-reconfigure tzdata
+```
+
 ## 3 附录
 
 ### 3.1 管理平台：无法访问
@@ -54,6 +68,9 @@ systemctl restart pvestatd
 ### 3.2 提示：无效订阅
 
 ```bash
+# backup
+cp /usr/share/javascript/proxmox-widget-toolkit/{proxmoxlib.js,proxmoxlib.js.bak220721}
+
 # modify
 vi /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js
 '''
@@ -80,7 +97,8 @@ systemctl restart pveproxy
 ### 3.3 切换PVE的Debian源
 
 ```bash
-mv /etc/apt/sources.list /etc/apt/sources.list.bak220721
+# backup
+cp /etc/apt/{sources.list,sources.list.bak220721}
 
 # aliyun
 cat > /etc/apt/sources.list <<-'EOF'
@@ -146,7 +164,8 @@ apt install ifupdown2
 ### 3.5 切换PVE的CT Templates源
 
 ```bash
-cp /usr/share/perl5/PVE/APLInfo.pm /usr/share/perl5/PVE/APLInfo.pm.bak220721
+# backup
+cp /usr/share/perl5/PVE/{APLInfo.pm,APLInfo.pm.bak220721}
 
 # ustc
 sed -i 's|http://download.proxmox.com|https://mirrors.ustc.edu.cn/proxmox|g' /usr/share/perl5/PVE/APLInfo.pm
@@ -155,4 +174,11 @@ sed -i 's|http://download.proxmox.com|https://mirrors.ustc.edu.cn/proxmox|g' /us
 sed -i 's|http://download.proxmox.com|https://mirrors.tuna.tsinghua.edu.cn/proxmox|g' /usr/share/perl5/PVE/APLInfo.pm
 
 reboot
+```
+
+### 3.6 [OpenVZ Templates download](https://download.openvz.org/template/precreated/)
+
+```bash
+# upload
+ls /var/lib/vz/template/cache
 ```
