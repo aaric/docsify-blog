@@ -142,9 +142,10 @@ apt update
 ### 3.4 切换PVE的企业源
 
 ```bash
-cat > /etc/apt/sources.list.d/pve-enterprise.list <<-'EOF'
+vi /etc/apt/sources.list.d/pve-enterprise.list
+'''
 #deb https://enterprise.proxmox.com/debian/pve bullseye pve-enterprise
-EOF
+'''
 
 # ustc
 cat > /etc/apt/sources.list.d/pve-no-subscription.list <<-'EOF'
@@ -210,12 +211,55 @@ vi /etc/issue
 reboot
 ```
 
-### 3.7 [OpenVZ Templates download](https://download.openvz.org/template/precreated/)
+### 3.7 `WARN: old systemd (< v232) detected, container won't run in a pure cgroupv2 environment`
 
 > [Since Proxmox VE 7.0, the default is a pure cgroupv2 environment.](https://pve.proxmox.com/pve-docs/chapter-pct.html#pct_cgroup_compat)
+
+```bash
+# config
+sed -i 's|^GRUB_CMDLINE_LINUX=""|GRUB_CMDLINE_LINUX="systemd.unified_cgroup_hierarchy=0"|g' \
+  /etc/default/grub
+cat /etc/default/grub | grep GRUB_CMDLINE_LINUX
+
+# update config
+update-grub
+cat /boot/grub/grub.cfg | grep quiet
+
+reboot
+
+# msg
+dmesg | grep group
+```
+
+### 3.8 [OpenVZ Templates download](https://download.openvz.org/template/precreated/)
 
 ```bash
 # upload
 # iso -> /var/lib/vz/template/iso
 ls /var/lib/vz/template/cache
+```
+
+### 3.9 CT容器shell报错：`cannot change locale (C.utf8): No such file or directory`
+
+```bash
+# locale
+cat > /etc/locale.conf <<-'EOF'
+LANG="en_US.UTF-8"
+EOF
+
+reboot
+```
+
+### 3.10 CT容器安装`openssh`
+
+```bash
+# repo
+curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo
+yum clean all && yum makecache
+
+# install
+yum install openssh-server -y
+
+# start
+systemctl enable sshd --now
 ```
