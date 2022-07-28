@@ -210,7 +210,10 @@ reboot
 
 ### 3.7 [OpenVZ Templates download](https://download.openvz.org/template/precreated/)
 
+> [Since Proxmox VE 7.0, the default is a pure cgroupv2 environment.](https://pve.proxmox.com/pve-docs/chapter-pct.html#pct_cgroup_compat)
+
 ```bash
 # upload
+# iso -> /var/lib/vz/template/iso
 ls /var/lib/vz/template/cache
 ```
