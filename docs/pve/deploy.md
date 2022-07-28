@@ -168,10 +168,12 @@ apt install ifupdown2
 cp /usr/share/perl5/PVE/{APLInfo.pm,APLInfo.pm.bak220721}
 
 # ustc
-sed -i 's|http://download.proxmox.com|https://mirrors.ustc.edu.cn/proxmox|g' /usr/share/perl5/PVE/APLInfo.pm
+sed -i 's|http://download.proxmox.com|https://mirrors.ustc.edu.cn/proxmox|g' \
+  /usr/share/perl5/PVE/APLInfo.pm
 
 # tsinghua √
-sed -i 's|http://download.proxmox.com|https://mirrors.tuna.tsinghua.edu.cn/proxmox|g' /usr/share/perl5/PVE/APLInfo.pm
+sed -i 's|http://download.proxmox.com|https://mirrors.tuna.tsinghua.edu.cn/proxmox|g' \
+  /usr/share/perl5/PVE/APLInfo.pm
 
 reboot
 ```
