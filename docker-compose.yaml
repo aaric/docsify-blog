@@ -14,6 +14,7 @@ services:
       - LANG=zh_CN.UTF-8
     ports:
       - 80:80
+      - 443:443
     restart: always
     deploy:
       restart_policy:
