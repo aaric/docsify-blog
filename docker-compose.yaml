@@ -8,7 +8,7 @@ services:
 #      #- ./lua-custom:/usr/local/openresty/nginx/lua-custom
 #      - ./ssl:/usr/local/openresty/nginx/conf/ssl
 #      - /var/www/letsencrypt:/var/www/letsencrypt
-#      - /etc/letsencrypt/live:/etc/letsencrypt/live
+#      - /etc/letsencrypt/live:/etc/letsencrypt/live/localhost
 #    environment:
 #      - TZ=Asia/Shanghai
 #      - LANG=zh_CN.UTF-8
