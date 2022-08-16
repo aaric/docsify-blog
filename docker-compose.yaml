@@ -6,7 +6,7 @@ services:
     volumes:
       - ./conf.d:/etc/nginx/conf.d
       #- ./lua-custom:/usr/local/openresty/nginx/lua-custom
-      - ./ssl:/usr/local/openresty/nginx/conf/ssl
+      - ./nginx:/usr/local/openresty/nginx/conf/nginx
       - /var/www/letsencrypt:/var/www/letsencrypt
       - /etc/letsencrypt/live:/etc/letsencrypt/live
     environment:
