@@ -48,6 +48,37 @@ date > test.txt
 
 ./mc du minio
 ./mc admin info minio/
+
+./mc admin user list minio
+./mc admin user add minio newuser newuser123
+#./mc admin user disable minio newuser
+#./mc admin user enable minio newuser
+./mc admin user info minio newuser
+./mc admin user remove minio newuser
+
+./mc admin policy list minio
+./mc admin policy info minio readonly
+./mc admin policy info minio writeonly
+./mc admin policy info minio readwrite
+cat > newbucketAdmin.json <<-'EOF'
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+    "Effect": "Allow",
+    "Action": [
+      "s3:*"
+    ],
+    "Resource": [
+      "arn:aws:s3:::newbucket/*"
+    ]
+  }]
+}
+EOF
+./mc admin policy add minio newbucketAdmin newbucketAdmin.json
+./mc admin policy remove minio newbucketAdmin
+
+./mc admin policy set minio newbucketAdmin user=newuser
+./mc admin policy unset minio newbucketAdmin user=newuser
 ```
 
 ## 2 DC部署
