@@ -7,5 +7,5 @@
 
   * Java
   * Flutter
-  * Kubernetes
+  * [Kubernetes](kubernetes/minio.md)
   * [Proxmox VE](pve/deploy.md)
