@@ -14,11 +14,11 @@
 # install
 wget https://dl.min.io/server/minio/release/linux-amd64/minio && chmod +x ./minio
 
-# serve
+# single
 export MINIO_ROOT_USER=admin
 export MINIO_ROOT_PASSWORD=admin123
-#export MINIO_SERVER_ACCESS_KEY=c9193d6ae58027ae
-#export MINIO_SERVER_SECRET_KEY=132b6c5fc9193d6ae58027ae302ab67b
+#export MINIO_SERVER_ACCESS_KEY=fa04fe9feb245ff2
+#export MINIO_SERVER_SECRET_KEY=63807858fa04fe9feb245ff21b581a9b
 #./minio server ./data{1,2} --console-address "0.0.0.0:9001"
 ./minio server ./data{1,2} --address "0.0.0.0:9000" --console-address "0.0.0.0:9001"
 ```
@@ -28,6 +28,26 @@ export MINIO_ROOT_PASSWORD=admin123
 ```bash
 # install
 wget https://dl.min.io/client/mc/release/linux-amd64/mc && chmod +x ./mc
+
+# command
+./mc config host rm local
+./mc config host rm gcs
+./mc config host rm s3
+./mc config host add minio http://10.0.11.25:9000 admin admin123
+./mc config host ls
+
+./mc ls minio
+./mc mb minio/newbucket
+date > test.txt
+./mc cp test.txt minio/newbucket
+./mc ls minio/newbucket
+./mc cat minio/newbucket/test.txt
+./mc cp minio/newbucket/test.txt .
+./mc rm minio/newbucket/test.txt
+./mc rb --force minio/newbucket
+
+./mc du minio
+./mc admin info minio/
 ```
 
 ## 2 DC部署
@@ -48,8 +68,8 @@ services:
       - LANG=zh_CN.UTF-8
       - MINIO_ROOT_USER=admin
       - MINIO_ROOT_PASSWORD=admin123
-#      - MINIO_SERVER_ACCESS_KEY=c9193d6ae58027ae
-#      - MINIO_SERVER_SECRET_KEY=132b6c5fc9193d6ae58027ae302ab67b
+#      - MINIO_SERVER_ACCESS_KEY=fa04fe9feb245ff2
+#      - MINIO_SERVER_SECRET_KEY=63807858fa04fe9feb245ff21b581a9b
     ports:
       - 9000:9000
       - 9001:9001
