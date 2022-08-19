@@ -5,10 +5,12 @@
 |1|管理平台地址|`http://localhost:9001`||
 |2|管理账号|`admin`||
 |3|管理密码|`admin123`|*测试环境，请勿修改密码*|
+|4|普通账号|`newuser`|*仅授权`newbucket`桶管理权限*|
+|5|普通密码|`newuser123`||
 
 ## 1 Binary部署
 
-### 1.1 server
+### 1.1 deploy
 
 ```bash
 # install
@@ -30,6 +32,7 @@ export MINIO_ROOT_PASSWORD=admin123
 wget https://dl.min.io/client/mc/release/linux-amd64/mc && chmod +x ./mc
 
 # command
+# https://docs.min.io/docs/minio-client-complete-guide.html
 ./mc config host rm local
 ./mc config host rm gcs
 ./mc config host rm s3
@@ -56,6 +59,7 @@ date > test.txt
 ./mc admin user info minio newuser
 ./mc admin user remove minio newuser
 
+# https://docs.min.io/docs/minio-admin-complete-guide.html
 ./mc admin policy list minio
 ./mc admin policy info minio readonly
 ./mc admin policy info minio writeonly
