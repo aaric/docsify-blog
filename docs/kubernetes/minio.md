@@ -21,8 +21,16 @@ export MINIO_ROOT_USER=admin
 export MINIO_ROOT_PASSWORD=admin123
 #export MINIO_SERVER_ACCESS_KEY=fa04fe9feb245ff2
 #export MINIO_SERVER_SECRET_KEY=63807858fa04fe9feb245ff21b581a9b
-#./minio server ./data{1,2} --console-address "0.0.0.0:9001"
-./minio server ./data{1,2} --address "0.0.0.0:9000" --console-address "0.0.0.0:9001"
+mkdir ./data{1..2}
+#./minio server ./data{1..2} --console-address "0.0.0.0:9001"
+./minio server ./data{1..2} --address "0.0.0.0:9000" --console-address "0.0.0.0:9001"
+```
+
+&emsp;&emsp;*Notes:*
+
+```text
+WARNING: MINIO_ACCESS_KEY and MINIO_SECRET_KEY are deprecated.
+         Please use MINIO_ROOT_USER and MINIO_ROOT_PASSWORD
 ```
 
 ### 1.2 client

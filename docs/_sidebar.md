@@ -1,7 +1,7 @@
 * 快速建站
 
-  * [快速开始](docsify/quickstart.md)
-  * [部署与编排](docsify/deploy.md)
+  * [一、快速开始](docsify/quickstart.md)
+  * [二、部署与编排](docsify/deploy.md)
 
 * 技术专栏
 
@@ -9,8 +9,11 @@
   * Flutter
   * Kubernetes
 
-    * [MinIO](kubernetes/minio.md)
+    * [一、MinIO](kubernetes/minio.md)
 
   * Proxmox VE
 
-    * [部署PVE](pve/deploy.md)
+    * [一、部署PVE](pve/deploy.md)
+    * [一、安装OpenWrt](pve/openwrt.md)
+    * 二、安装Windows
+    * 三、基于CT模板安装Linux
