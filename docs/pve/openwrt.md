@@ -28,8 +28,7 @@ vi /etc/config/network
         option gateway '192.168.1.1'
         option dns '114.114.114.114'
 '''
-# 重启网络（或操作系统）
-#reboot
+# 重启网络（或reboot）
 /etc/init.d/network restart
 
 # 安装软件包
