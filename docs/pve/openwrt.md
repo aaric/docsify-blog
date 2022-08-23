@@ -34,7 +34,7 @@ vi /etc/config/network
 # 安装软件包
 opkg update
 
-## 中文支持
+## 1.中文支持
 opkg install -y luci-i18n-base-zh-cn
 
 # 关机
