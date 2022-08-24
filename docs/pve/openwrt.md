@@ -37,6 +37,13 @@ opkg update
 ## 1.中文支持
 opkg install -y luci-i18n-base-zh-cn
 
+## 2.主题
+# https://github.com/jerrykuku/luci-theme-argon
+# https://github.com/thinktip/luci-theme-neobird -- error: only for lede version
+opkg install luci-theme-neobird_1.99-202201272020_all.ipk
+opkg list_installed
+opkg remove luci-theme-neobird
+
 # 关机
 poweroff
 ```
