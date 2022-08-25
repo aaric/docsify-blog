@@ -20,3 +20,26 @@ docsify init ./docs
 # 本地预览
 docsify serve docs
 ```
+
+## 3 定时更新
+
+```bash
+# 定时任务
+cat > gitpull.sh <<-EOF
+#!/bin/bash
+source /etc/profile
+logfile=$HOME/crontab.log
+date "+%F %T %Z" >> $logfile
+cd $HOME/docsify-blog
+git pull >> $logfile
+EOF
+chmod 755 gitpull.sh
+crontab -e
+'''
+0 3 * * * $HOME/gitpull.sh
+'''
+crontab -l
+
+# 执行日志
+sudo tail -f /var/log/cron
+```
