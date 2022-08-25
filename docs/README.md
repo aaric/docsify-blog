@@ -12,5 +12,12 @@ graph LR
     A[Java] --> A1[TBD];
     B[Flutter] --> B1[TBD];
     C[Kubernetes] --> C1[MinIO];
-    D[Proxmox VE] --> D1[Deploy PVE] --> D2[OpenWrt] --> D3[Windows] --> D4[CT Templates];
+    D[Proxmox VE] --> D1[Install PVE];
+    D --> D2[Install VM];
+    D2 --> D21[Host];
+    D21 --> D211[OpenWrt];
+    D21 --> D212[Windows];
+    D2 --> D22[CT Templates];
+    D22 -->  D221[CentOS];
+    D22 -->  D222[Ubuntu];
 ```
