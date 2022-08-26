@@ -14,7 +14,7 @@ npm install -g docsify-cli --registry=https://registry.npm.taobao.org
 docsify init ./docs
 ```
 
-## 3 开发文档
+## 3 发布预览
 
 ```bash
 # 本地预览
