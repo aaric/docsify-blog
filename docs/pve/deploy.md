@@ -188,13 +188,14 @@ vi /etc/network/interfaces
 iface vmbr0 inet static
         address 192.168.1.70/24
         gateway 192.168.1.1
+        dns 192.168.1.1
 '''
 
 # dns
-vi /etc/resolv.conf
-'''
-nameserver 192.168.1.1
-'''
+#vi /etc/resolv.conf
+#'''
+#nameserver 192.168.1.1
+#'''
 
 # hosts
 vi /etc/hosts
