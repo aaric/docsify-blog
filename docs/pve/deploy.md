@@ -31,20 +31,6 @@
 
 &emsp;&emsp;待完善。。。
 
-```bash
-# upgrade
-apt update
-apt dist-upgrade -y
-
-# kernel
-dpkg --list | grep kernel
-apt purge pve-kernel-5.15.30-2-pve
-reboot
-
-# tzdata
-dpkg-reconfigure tzdata
-```
-
 ## 3 附录
 
 ### 3.1 管理平台：无法访问
@@ -179,7 +165,23 @@ sed -i 's|http://download.proxmox.com|https://mirrors.tuna.tsinghua.edu.cn/proxm
 reboot
 ```
 
-### 3.6 修改PVE环境IP地址
+### 3.6 升级PVE的Kernel内核
+
+```bash
+# upgrade
+apt update
+apt dist-upgrade -y
+
+# kernel
+dpkg --list | grep kernel
+apt purge pve-kernel-5.15.30-2-pve
+reboot
+
+# tzdata
+dpkg-reconfigure tzdata
+```
+
+### 3.7 修改PVE环境IP地址
 
 ```bash
 # ipv4
@@ -211,7 +213,7 @@ vi /etc/issue
 reboot
 ```
 
-### 3.7 `WARN: old systemd (< v232) detected, container won't run in a pure cgroupv2 environment`
+### 3.8 `WARN: old systemd (< v232) detected, container won't run in a pure cgroupv2 environment`
 
 > [Since Proxmox VE 7.0, the default is a pure cgroupv2 environment.](https://pve.proxmox.com/pve-docs/chapter-pct.html#pct_cgroup_compat)
 
@@ -231,7 +233,7 @@ reboot
 dmesg | grep group
 ```
 
-### 3.8 [OpenVZ Templates download](https://download.openvz.org/template/precreated/)
+### 3.9 [OpenVZ Templates download](https://download.openvz.org/template/precreated/)
 
 ```bash
 # upload
@@ -239,7 +241,7 @@ dmesg | grep group
 ls /var/lib/vz/template/cache
 ```
 
-### 3.9 CT容器shell报错：`cannot change locale (C.utf8): No such file or directory`
+### 3.10 CT容器shell报错：`cannot change locale (C.utf8): No such file or directory`
 
 ```bash
 # locale
@@ -250,7 +252,7 @@ EOF
 reboot
 ```
 
-### 3.10 CT容器安装`openssh`
+### 3.11 CT容器安装`openssh`
 
 ```bash
 # repo
@@ -263,3 +265,22 @@ yum install openssh-server -y
 # start
 systemctl enable sshd --now
 ```
+
+### 3.12 修改 Windows 远程桌面端口 `3389`
+
+> *按住 `WIN+R` 快捷键，输入 `regedit` 打开注册表*  
+> *注册表基路径：`HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\`*
+
+|No.|Path|Key|Type|Value|Remark|
+|:---:|-----|:---:|:---:|:---:|-----|
+|1|[`Wds\rdpwd\Tds\tcp`](HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal%20Server\Wds\rdpwd\Tds\tcp)|`PortNumber`|`REG_DWORD`|`33893`|*选择基数：`十进制`*|
+|2|[`WinStations\RDP-Tcp`](HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal%20Server\WinStations\RDP-Tcp)|`PortNumber`|`REG_DWORD`|`33893`|*选择基数：`十进制`*|
+
+&emsp;&emsp;**修改默认 `3389` 端口为**
+
+![pve-windows-rdp.png](../img/pve-windows-rdp.png ":size=500")
+![pve-windows-rdp-tcp.png](../img/pve-windows-rdp-tcp.png ":size=500")
+
+&emsp;&emsp;**添加 `RDP (TCP-In)` 防火墙规则**
+
+![pve-windows-rdp-firewall.png](../img/pve-windows-rdp-firewall.png ":size=500")
