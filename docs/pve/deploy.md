@@ -276,11 +276,11 @@ systemctl enable sshd --now
 |1|[`Wds\rdpwd\Tds\tcp`](HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal%20Server\Wds\rdpwd\Tds\tcp)|`PortNumber`|`REG_DWORD`|`33893`|*选择基数：`十进制`*|
 |2|[`WinStations\RDP-Tcp`](HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal%20Server\WinStations\RDP-Tcp)|`PortNumber`|`REG_DWORD`|`33893`|*选择基数：`十进制`*|
 
-&emsp;&emsp;**修改默认 `3389` 端口为**
+&emsp;&emsp;**修改默认 `3389` 端口为 `33893`**
 
-![pve-windows-rdp.png](../img/pve-windows-rdp.png ":size=500")
-![pve-windows-rdp-tcp.png](../img/pve-windows-rdp-tcp.png ":size=500")
+![pve-windows-rdp.png](../img/pve-windows-rdp.png ":size=800")
+![pve-windows-rdp-tcp.png](../img/pve-windows-rdp-tcp.png ":size=800")
 
 &emsp;&emsp;**添加 `RDP (TCP-In)` 防火墙规则**
 
-![pve-windows-rdp-firewall.png](../img/pve-windows-rdp-firewall.png ":size=500")
+![pve-windows-rdp-firewall.png](../img/pve-windows-rdp-firewall.png ":size=800")
