@@ -47,6 +47,8 @@ tail -f /var/log/nps.log
 
 ## 2 Client
 
+### 2.1 Linux
+
 ```bash
 # download
 curl -o linux_amd64_client-v0.26.10.tar.gz \
@@ -60,3 +62,7 @@ mkdir /opt/npc-0.26.10 \
 # client
 ./npc -server 127.0.0.1:8024 -vkey=123
 ```
+
+### 2.1 Windows
+
+&emsp;&emsp;*略。*

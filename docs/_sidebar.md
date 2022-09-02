@@ -17,3 +17,8 @@
     * [一、安装OpenWrt](pve/openwrt.md)
     * 二、安装Windows
     * 三、基于CT模板安装Linux
+
+  * Network
+
+    * [NPS](network/nps.md)
+    * [Aria2](network/aria2.md)
