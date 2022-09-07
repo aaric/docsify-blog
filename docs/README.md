@@ -9,7 +9,8 @@
 ```mermaid
 %% 技术图谱 %%
 graph LR
-    A[Java] --> A1[TBD];
+    A[Java] --> A1[ENV];
+    A[Java] --> A2[Alpine Image];
     B[Flutter] --> B1[TBD];
     C[Kubernetes] --> C1[MinIO];
     D[Proxmox VE] --> D1[Install PVE];

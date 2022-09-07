@@ -6,6 +6,10 @@
 * 技术专栏
 
   * Java
+
+    * [一、环境变量](java/env.md)
+    * [二、制作容器镜像](java/alpine.md)
+
   * Flutter
   * Kubernetes
 
