@@ -113,6 +113,6 @@ taskkill /f /im aria2c.exe
 
 ### 4 Chrome 扩展程序
 
-&emsp;&emsp;*下载 [`Aria2 for Chrome*](https://chrome.google.com/webstore/detail/aria2-for-chrome/mpkodccbngfoacfalldjimigbofkhgjn) 扩展程序。*
+&emsp;&emsp;*下载 [`Aria2 for Chrome`](https://chrome.google.com/webstore/detail/aria2-for-chrome/mpkodccbngfoacfalldjimigbofkhgjn) 扩展程序。*
 
 ![ariang-windows-chrome.png](../img/ariang-windows-chrome.png ":size=800")

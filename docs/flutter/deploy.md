@@ -9,7 +9,7 @@ $env:FLUTTER_STORAGE_BASE_URL = https://storage.flutter-io.cn
 
 ## 2 Flutter Doctor
 
-### 2.1 \[✗\] Android toolchain - develop for Android devices
+### 2.1 [✗] Android toolchain - develop for Android devices
 
 ```powershell
 # Unable to locate Android SDK.
@@ -19,7 +19,7 @@ $env:ANDROID_HOME = E:\cache_app\sdk
 flutter doctor --android-licenses
 ```
 
-### 2.2 \[✗\] Visual Studio - develop for Windows
+### 2.2 [✗] Visual Studio - develop for Windows
 
 > [Select the installation locations in Visual Studio](https://docs.microsoft.com/en-us/visualstudio/install/change-installation-locations?view=vs-2022)
 
@@ -29,7 +29,7 @@ flutter doctor --android-licenses
 .\vs_community.exe --noweb --add Microsoft.VisualStudio.Workload.NativeDesktop --includeRecommended --lang zh-CN
 ```
 
-### 2.3 \[✗\] You need Java 11 or higher to build your app with this version of Gradle.
+### 2.3 [✗] You need Java 11 or higher to build your app with this version of Gradle
 
 **`<project_dir>\\android\\gradle.properties`**
 
