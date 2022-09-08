@@ -11,18 +11,21 @@
     * [二、制作容器镜像](java/alpine.md)
 
   * Flutter
+
+    * [一、开发环境](flutter/deploy.md)
+
   * Kubernetes
 
-    * [一、MinIO](kubernetes/minio.md)
+    * [一、MinIO 存储](kubernetes/minio.md)
 
   * Proxmox VE
 
-    * [一、部署PVE](pve/deploy.md)
-    * [一、安装OpenWrt](pve/openwrt.md)
+    * [一、部署 PVE](pve/deploy.md)
+    * [一、安装 OpenWrt](pve/openwrt.md)
     * 二、安装Windows
     * 三、基于CT模板安装Linux
 
   * Network
 
-    * [NPS](network/nps.md)
-    * [Aria2](network/aria2.md)
+    * [一、NPS 内网穿透](network/nps.md)
+    * [二、Aria2 下载工具](network/aria2.md)
