@@ -69,6 +69,10 @@ headscale namespaces list
 headscale -n default nodes register \
   --key e817be4b3dfe8ea5c73fe0b68f0bbd497c9b9d0430c869668c4872308e949c63
 headscale nodes list
+
+# routes | --advertise-routes
+headscale routes enable -i 1 -r "192.168.100.0/24"
+headscale routes list -i 1
 ```
 
 ### 1.2 Docker
@@ -118,6 +122,10 @@ docker exec headscale_community_edition headscale namespaces list
 # nodes
 docker exec headscale_community_edition headscale -n default nodes register --key e817be4b3dfe8ea5c73fe0b68f0bbd497c9b9d0430c869668c4872308e949c63
 docker exec headscale_community_edition headscale nodes list
+
+# routes | --advertise-routes
+docker exec headscale_community_edition headscale routes enable -i 1 -r "192.168.100.0/24"
+docker exec headscale_community_edition headscale routes list -i 1
 ```
 
 ## 2 Client
@@ -153,4 +161,26 @@ systemctl status tailscaled
 # login - server confirm
 tailscale up --login-server=http://yourserver.com:8080 \
   --accept-routes=true --accept-dns=false
+
+# login | routes - server confirm
+cat > /etc/sysctl.d/tailscale.conf <<-'EOF'
+net.ipv4.ip_forward = 1
+net.ipv6.conf.all.forwarding = 1
+EOF
+sysctl -p /etc/sysctl.d/tailscale.conf
+tailscale up --login-server=http://yourserver.com:8080 \
+  --accept-routes=true --accept-dns=false \
+  --advertise-routes=192.168.100.0/24
+```
+
+### 2.2 Windows
+
+```powershell
+# download | http://yourserver.com:8080/windows
+curl -o tailscale.reg http://yourserver.com:8080/windows/tailscale.reg
+regedit /s tailscale.reg
+
+# or
+REG ADD "HKLM\Software\Tailscale IPN" /v UnattendedMode /t REG_SZ /d always
+REG ADD "HKLM\Software\Tailscale IPN" /v LoginURL /t REG_SZ /d "http://yourserver.com:8080"
 ```
