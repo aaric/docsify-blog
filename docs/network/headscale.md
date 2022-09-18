@@ -64,6 +64,11 @@ ss -tulnp | grep headscale
 # ns
 headscale namespaces create default
 headscale namespaces list
+
+# register
+headscale -n default nodes register \
+  --key e817be4b3dfe8ea5c73fe0b68f0bbd497c9b9d0430c869668c4872308e949c63
+headscale nodes list
 ```
 
 ### 1.2 Docker
@@ -85,7 +90,9 @@ tbd
 |3|Windows|[`tailscale-setup-1.30.2-amd64.msi`](https://pkgs.tailscale.com/stable/tailscale-setup-1.30.2-amd64.msi)|*Official*|
 |4|MacOS|[`Tailscale-1.30.2-macos.zip`](https://pkgs.tailscale.com/stable/Tailscale-1.30.2-macos.zip)|*Official*|
 
-## 2.1 Linux
+### 2.1 Linux
+
+> [Setting up Tailscale on CentOS 7](https://tailscale.com/kb/1048/install-centos-7/)
 
 ```bash
 # download
@@ -104,7 +111,7 @@ systemctl daemon-reload
 systemctl enable tailscaled --now
 systemctl status tailscaled
 
-# login
+# login - server confirm
 tailscale up --login-server=http://yourserver.com:8080 \
   --accept-routes=true --accept-dns=false
 ```
