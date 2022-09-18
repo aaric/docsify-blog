@@ -61,11 +61,11 @@ systemctl status headscale
 # test
 ss -tulnp | grep headscale
 
-# ns
+# namespaces
 headscale namespaces create default
 headscale namespaces list
 
-# register
+# nodes
 headscale -n default nodes register \
   --key e817be4b3dfe8ea5c73fe0b68f0bbd497c9b9d0430c869668c4872308e949c63
 headscale nodes list
@@ -76,9 +76,48 @@ headscale nodes list
 ```bash
 # download image
 docker pull headscale/headscale:0.16.4
+docker pull tailscale/tailscale:v1.30.2
 
 # config
-tbd
+curl -o config/config.yaml \
+  https://github.com/juanfont/headscale/raw/v0.16.4/config-example.yaml
+vim config/config.yaml
+'''
+server_url: http://yourserver.com:8080
+ip_prefixes:
+  #- fd7a:115c:a1e0::/48
+  - 100.64.0.0/10
+'''
+# deploy
+cat > docker-compose.yaml <<-'EOF'
+version: "3"
+services:
+  headscale:
+    image: headscale/headscale:0.16.4
+    container_name: headscale_community_edition
+    cap_add:
+      - CAP_NET_BIND_SERVICE
+    volumes:
+      - ./config:/etc/headscale/
+      - ./data:/var/lib/headscale
+    ports:
+      - 8080:8080
+      - 41641:41641
+    command: headscale serve
+    restart: unless-stopped
+    deploy:
+      restart_policy:
+        condition: on-failure
+EOF
+docker-compose --compatibility up -d
+
+# namespaces
+docker exec headscale_community_edition headscale namespaces create default
+docker exec headscale_community_edition headscale namespaces list
+
+# nodes
+docker exec headscale_community_edition headscale -n default nodes register --key e817be4b3dfe8ea5c73fe0b68f0bbd497c9b9d0430c869668c4872308e949c63
+docker exec headscale_community_edition headscale nodes list
 ```
 
 ## 2 Client
