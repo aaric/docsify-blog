@@ -76,7 +76,6 @@ headscale nodes list
 ```bash
 # download image
 docker pull headscale/headscale:0.16.4
-docker pull tailscale/tailscale:v1.30.2
 
 # config
 curl -o config/config.yaml \
@@ -88,6 +87,7 @@ ip_prefixes:
   #- fd7a:115c:a1e0::/48
   - 100.64.0.0/10
 '''
+
 # deploy
 cat > docker-compose.yaml <<-'EOF'
 version: "3"
