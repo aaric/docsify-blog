@@ -18,7 +18,7 @@ curl -o /etc/headscale/config.yaml \
   https://github.com/juanfont/headscale/raw/v0.16.4/config-example.yaml
 vim /etc/headscale/config.yaml
 '''
-server_url: http://yourdomain.com:8080
+server_url: http://yourserver.com:8080
 ip_prefixes:
   #- fd7a:115c:a1e0::/48
   - 100.64.0.0/10
@@ -81,10 +81,30 @@ tbd
 |No.|OS|Tailscale|Remark|
 |:---:|:---:|:---:|-----|
 |1|Linux|[`tailscale_1.30.2_amd64.tgz`](https://pkgs.tailscale.com/stable/tailscale_1.30.2_amd64.tgz)|*Official*|
-|2|Android|[``]()|*Freedom*|
+|2|Android|[`tailscale-fdroid.apk`](https://github.com/FZR-forks/tailscale-android)|*Freedom*|
 |3|Windows|[`tailscale-setup-1.30.2-amd64.msi`](https://pkgs.tailscale.com/stable/tailscale-setup-1.30.2-amd64.msi)|*Official*|
 |4|MacOS|[`Tailscale-1.30.2-macos.zip`](https://pkgs.tailscale.com/stable/Tailscale-1.30.2-macos.zip)|*Official*|
 
 ## 2.1 Linux
 
-> *TBD*
+```bash
+# download
+curl -o tailscale_1.30.2_amd64.tgz \
+  https://pkgs.tailscale.com/stable/tailscale_1.30.2_amd64.tgz
+
+# binary
+tar -zxvf tailscale_1.30.2_amd64.tgz
+cp tailscale_1.30.2_amd64/tailscaled /usr/sbin/tailscaled
+cp tailscale_1.30.2_amd64/tailscale /usr/bin/tailscale
+
+# systemd
+cp tailscale_1.30.2_amd64/systemd/tailscaled.defaults /etc/default/tailscaled
+cp tailscale_1.30.2_amd64/systemd/tailscaled.service /lib/systemd/system/tailscaled.service
+systemctl daemon-reload
+systemctl enable tailscaled --now
+systemctl status tailscaled
+
+# login
+tailscale up --login-server=http://yourserver.com:8080 \
+  --accept-routes=true --accept-dns=false
+```
