@@ -18,6 +18,10 @@
 
     * [一、MinIO 存储](kubernetes/minio.md)
 
+  * TensorFlow
+
+    * [一、基础环境](tensorflow/python3.md)
+
   * Proxmox VE
 
     * [一、部署 PVE](pve/deploy.md)
