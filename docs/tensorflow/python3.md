@@ -40,4 +40,5 @@ pip3 config list
 # https://pypi.org/search/?q=pandas
 pip3 install pandas==1.5.0
 pip3 install -r requirements.txt
+ls $(pip3 cache dir)
 ```
