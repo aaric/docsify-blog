@@ -23,12 +23,21 @@ pip3 --version
 ## 2 配置 `pip` 国内镜像源
 
 ```bash
-mkdir $HOME/pip{,_cache}
-cat > $HOME/pip/pip.ini <<-EOF
+mkdir $HOME/.pip{,_cache}
+
+# windows -> %USERPROFILE%/pip/pip.ini
+mkdir -p $HOME/.pip/cache
+cat > $HOME/.pip/pip.conf <<-EOF
 [global]
-cache-dir = $HOME/pip_cache
+cache-dir = $HOME/.pip/cache
 index-url = http://mirrors.aliyun.com/pypi/simple
+
 [install]
 trusted-host = mirrors.aliyun.com
 EOF
+pip3 config list
+
+# https://pypi.org/search/?q=pandas
+pip3 install pandas==1.5.0
+pip3 install -r requirements.txt
 ```
