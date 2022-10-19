@@ -85,14 +85,14 @@ custom_channels:
   simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 envs_dirs:
   - E:\cache_python\conda\envs
-  - C:\Users\hanqi\.conda\envs
+  - C:\Users\admin\.conda\envs
   - C:\ProgramData\Miniconda3\envs
-  - C:\Users\hanqi\AppData\Local\conda\conda\envs
+  - C:\Users\admin\AppData\Local\conda\conda\envs
 pkgs_dirs:
   - E:\cache_python\conda\pkgs
   - C:\ProgramData\Miniconda3\pkgs
-  - C:\Users\hanqi\.conda\pkgs
-  - C:\Users\hanqi\AppData\Local\conda\conda\pkgs
+  - C:\Users\admin\.conda\pkgs
+  - C:\Users\admin\AppData\Local\conda\conda\pkgs
 '''
 conda clean -i
 ```
@@ -101,10 +101,10 @@ conda clean -i
 
 ```powershell
 pip config list -v
-mkdir C:\Users\hanqi\pip
+mkdir C:\Users\admin\pip
 
 # extra: https://pypi.doubanio.com/simple
-notepad C:\Users\hanqi\pip\pip.ini
+notepad C:\Users\admin\pip\pip.ini
 '''
 [global]
 cache-dir = E:\cache_python\conda\pip
