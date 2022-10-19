@@ -1,6 +1,8 @@
 # Python3
 
-## 1 源码编译
+## 1 [Python](https://www.python.org/downloads/)
+
+### 1.1 make
 
 ```bash
 # ModuleNotFoundError: No module named '_ctypes'
@@ -23,7 +25,7 @@ ln -s /usr/local/python38/bin/pip3 /usr/bin/pip3
 pip3 -V
 ```
 
-## 2 配置 `pip` 国内镜像源
+### 1.2 pip.conf
 
 ```bash
 #mkdir -p $HOME/.pip/site-packages
@@ -32,7 +34,7 @@ cat >> $HOME/.bash_profile <<-EOF
 
 # python3
 #export PYTHONPATH=$HOME/.pip/site-packages
-export USERPYTHONBASE=$HOME/.pip/local
+export PYTHONUSERBASE=$HOME/.pip/local
 EOF
 #python3 -m site --user-site
 python3 -m site --user-base
@@ -49,11 +51,67 @@ index-url = https://pypi.tuna.tsinghua.edu.cn/simple
 #trusted-host = mirrors.aliyun.com
 trusted-host = pypi.tuna.tsinghua.edu.cn
 EOF
-pip3 config list
+pip3 config list -v
 
 # https://pypi.org/search/?q=numpy
 pip3 install numpy==1.21.6
 pip3 show numpy
 pip3 install -r requirements.txt
 ls $(pip3 cache dir)
+```
+
+## 2 [Miniconda3](https://docs.conda.io/en/main/miniconda.html)
+
+### 2.1 .condarc
+
+```powershell
+conda info
+notepad C:\Users\admin\.condarc
+'''
+# https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/
+channels:
+  - defaults
+show_channel_urls: true
+default_channels:
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2
+custom_channels:
+  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+envs_dirs:
+  - E:\cache_python\conda\envs
+  - C:\Users\hanqi\.conda\envs
+  - C:\ProgramData\Miniconda3\envs
+  - C:\Users\hanqi\AppData\Local\conda\conda\envs
+pkgs_dirs:
+  - E:\cache_python\conda\pkgs
+  - C:\ProgramData\Miniconda3\pkgs
+  - C:\Users\hanqi\.conda\pkgs
+  - C:\Users\hanqi\AppData\Local\conda\conda\pkgs
+'''
+conda clean -i
+```
+
+### 2.2 pip.ini
+
+```powershell
+pip config list -v
+mkdir C:\Users\hanqi\pip
+
+# extra: https://pypi.doubanio.com/simple
+notepad C:\Users\hanqi\pip\pip.ini
+'''
+[global]
+cache-dir = E:\cache_python\conda\pip
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+
+[install]
+trusted-host = pypi.tuna.tsinghua.edu.cn
+'''
+pip config get global.cache-dir
 ```
